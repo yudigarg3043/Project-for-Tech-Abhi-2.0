@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto-Currency Converter</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body{
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-image: url("https://site.surveysparrow.com/wp-content/uploads/2023/05/1.png");
+    }
+    .container2{
+      display:flex;
+      flex-direction: row;
+      height: 80px;
+      width: 200px;
+      padding: 10px;
+    }
+    .container2 a{
+      padding: 12px;
+      margin: 10px;
+    }
+    .dropdown-menu {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-menu:hover .menu-content {
+      display: block;
+    }
+    .menu-btn {
+      background-color:transparent;
+      color: white;
+      padding: 23px;
+      font-size: 20px;
+      font-weight: bolder;
+      font-family: poppins;
+      border: none;
+      text-transform: uppercase;
+    }
+    .menu-content {
+      display: none;
+      position: absolute;
+      background-color: transparent;
+      min-width: 160px;
+      z-index: 1;
+    }
+    .links,.links-hidden{
+      display: inline-block;
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .links-hidden{
+      display: block;
+    }
+    nav {
+      width: 100%;
+      left: 10px;
+    }
+    nav a {
+      font-size: 20px;
+      margin-right: 7px;
+      margin-left: 2px;
+    }
+    .flex_container{
+      display: flex;
+    }
+    .form {
+      margin: 0 auto;
+      margin-right: 50px;
+      margin-left: 30px;
+    }
+    .form__fieldset {
+      border: 4px solid white;
+      border-radius: 10px;
+      margin-top: 120px;
+      padding-left: 30px;
+      padding-right: 20px;
+      margin-left: 50px;
+      max-width: 1100px;
+    }
+    .form__legend {
+      border: 2px solid white;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 25px;
+      background-color: white;
+       color: black;
+    }
+    .inputfield {
+      max-width: 190px;
+      background-color: ivory;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      outline: none;
+      color: black;
+      font-size: 16px;
+    }
+    #amount:focus {
+      animation: rotateShadow 2s infinite linear;
+    }
+    .form__labelText {
+      font-size: 20px;
+      display: inline-block;
+      width: 200px;
+      margin: 10px;
+      color: white;
+      font-weight: bold;
+    }   
+  .button {
+  --green: white;
+  font-size: 15px;
+  padding: 0.7em 2.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(112, 203, 225, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
+}
+.button:hover {
+  color: #30ade3;
+  box-shadow: inset 0 0 10px rgba(112, 203, 225, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+}
+.button:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform .4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+}
+.button:hover:before {
+  transform: translateX(15em);
+}
+    .form__container {
+      padding: 10px;
+    }
+    .form__result {
+      padding: 20px;
+    }
+    .form__labelText {
+      font-size: 20px;
+      display: inline-block;
+      width: 200px;
+      margin: 10px;
+      color: white;
+      font-weight: bold;
+    }
+    .form__container--submit {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .form__submit {
+      margin: 0 auto;
+      padding: 10px;
+      background-color: white;
+      color: black;
+      border: none;
+      font-size: 20px;
+    }
+    .form__resultContainer {
+      border-top: 2px double white;
+    }
+    .form__result {
+      font-size: 25px;
+      font-weight: 700;
+    }
+    .form__resultContent {
+      display: inline-block;
+      margin: 20px;
+      font-size: 30px;
+      font-weight: 700;
+      color: crimson;
+    }
+    nav a {
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-family: poppins;
+      margin-right: 20px;
+    }
+    .Swap_Button{
+      align-content: center;
+      rotate: 90deg;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: ivory;
+      color: navy;
+      position: absolute;
+      inset-inline-start: 15%;
+      transform: translate(-50%, -50%);
+    }
+    .Swap_Button:hover{
+      background-color: navy;
+      color: ivory;
+    }
+    ul{
+      list-style: none;
+    }
+    .list{
+      width: 100%;
+      background-color: #ffffff;
+    }
+    .list-items{
+      padding: 10px 5px;
+    }
+    .hidden{
+      display: none;
+    }
+    .history_format{
+      align-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: ivory;
+      color: navy;
+      margin-top: 22px;
+      font-size: 24px;
+      position: relative;
+      top: 5px;
+    }
+    .history_format:hover{
+      background-color: navy;
+      color: ivory;
+    }
+    #historyFormPopup {
+      position: fixed;
+      width: 400px;
+      top: 50%;
+      left: 57%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      z-index: 1; 
+    }
+    #historyList {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+    #historyList li {
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+    }
+    #closeHistoryForm {
+      width: 10em;
+      position: relative;
+      height: 2.5em;
+      border: 3px ridge #fafdfe;
+      outline: none;
+      background-color: transparent;
+      color: white;
+      transition: 1s;
+      border-radius: 0.3em;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #closeHistoryForm:hover::before, #closeHistoryForm:hover::after {
+      transform: scale(0)
+    }
+    #closeHistoryForm:hover {
+      box-shadow: inset 0px 0px 25px #959596;
+    }
+    #historyFormPopup{
+      background: rgba(11, 12, 12, 1.0);
+      background: linear-gradient(90deg, rgba(11, 12, 12, 1.0), rgba(104, 105, 95, 1.0));    
+    }
+    #historyFormPopup h2{
+      color: white;
+    }
+    @keyframes rotateShadow {
+      0% {
+        box-shadow: -2px -2px 0px 0px #949295, 2px 2px 0px 0px #5a5959;
+      }
+      25% {
+        box-shadow: -2px 2px 0px 0px #949295, 2px -2px 0px 0px #5a5959;
+      }
+      50% {
+        box-shadow: 2px 2px 0px 0px #949295, -2px -2px 0px 0px #5a5959;
+      }
+      75% {
+        box-shadow: 2px -2px 0px 0px #949295, -2px 2px 0px 0px #5a5959;
+      }
+      100% {
+        box-shadow: -2px -2px 0px 0px #949295, 2px 2px 0px 0px #5a5959;
+      }
+    }
+    .hidden1 {
+        display: none;
+    }
+    #favoriteFormPopup {
+      position: fixed;
+      width: 400px;
+      top: 50%;
+      left: 57%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      z-index: 1; 
+    }
+    #favoritesList {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+    #favoritesList li {
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+    }
+    #closeFavoriteForm {
+      width: 10em;
+      position: relative;
+      height: 2.5em;
+      border: 3px ridge #fafdfe;
+      outline: none;
+      background-color: transparent;
+      color: white;
+      transition: 1s;
+      border-radius: 0.3em;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #closeFavoriteForm:hover::before, #closeFavoriteForm:hover::after {
+      transform: scale(0)
+    }
+    #closeFavoriteForm:hover {
+      box-shadow: inset 0px 0px 25px #959596;
+    }
+    #favoriteFormPopup{
+      background: rgba(11, 12, 12, 1.0);
+      background: linear-gradient(90deg, rgba(11, 12, 12, 1.0), rgba(104, 105, 95, 1.0));    
+    }
+    #favoriteFormPopup h2{
+      color: white;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+    #result1 {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+    .favorite_Button{
+      border-radius: 50%;
+      height: 45px;
+      width: 45px;
+      color: navy;
+      font-size: 36px;
+      position: relative;
+      top: 5px;
+    }
+  .favorite_Button:hover{
+      background-color: navy;
+      color: ivory;
+    }
+    .historical{
+      max-width: 600px;
+      padding-left: 20px;
+      padding-right: 20px; 
+      position: relative;
+      outline: none;
+      background-color: transparent;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      max-height: 350px;
+    }
+    .historical h3{
+      color: white;
+      margin-left: 40px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+    .container {
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      max-width: 430px;
+      margin: 0 auto;
+      max-height: 70vh;
+      overflow-y: auto;
+      margin-top: 70px;
+      margin-right: 60px;
+  }
+  .news-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+  }
+  .news-item {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+  }
+  .news-item:last-child {
+      border-bottom: none;
+  }
+  .news-item a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+  }
+  .news-item img {
+  width: 100px; 
+  height: auto; 
+  margin-right: 10px;
+  }
+  .heading{
+    font-size: 36px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }  
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container2">
+      <img src="logo.png" height="70px" width="70px">
+      <a href="HomePage.html">Home</a>
+      <div class="dropdown-menu">
+        <button class="menu-btn">Services</button>
+        <div class="menu-content">
+          <a class="links-hidden" href="index.html"> Fiat-Currency Converter</a> 
+        </div>
+      </div>
+      <a href="Contact Us.html">Contact</a>
+      <a href="Feedback Page.html">Feedback</a>
+    </div>
+  </nav> 
+  <main>
+    <div class="flex_container">
+      <div class="form">
+        <fieldset class="form__fieldset">
+          <legend class="form__legend">Crypto-Currency Converter</legend>
+          <div class="flex_container">
+          <div>
+          <div class="amount" style="width: 510px; margin-top: 20px;">
+            <label for="amount"><span class="form__labelText">Enter Amount:</span>
+            <input type="number" style="margin-left: 10px;" class="inputfield" name="amount" id="amount" min="0" placeholder="Enter Amount">
+            </label>
+            <button class="button" style="width: 70px; height: 40px; padding: 0px; margin-left: 10px;" onclick="ClearFields()">
+            <span class="transition"></span>
+            <span class="gradient"></span>
+            <span class="label">Reset</span></button>
+          </div>
+          <div class="form__container">
+            <label for="from"><span class="form__labelText">From:</span>
+            </label>
+            <input list="from_currency" class="inputfield" name="from_currency" id="from">
+              <datalist id="from_currency">
+                <option value="BTC">BTC-Bitcoin</option>
+            <option value="ETH">ETH-Ethereum </option>
+            <option value="ADA">ADA-Cardano</option>
+            <option value="BNB">BNB-Binance</option>
+            <option value="SOL">SOL-Solana</option>
+            <option value="XRP">XRP-XRP</option>
+            <option value="DOT">DOT-Polkadot</option>
+            <option value="LINK">LINK-Chainlink</option>
+            <option value="LTC">LTC-Litecoin</option>
+            <option value="BCH">BCH-Bitcoin cash</option>
+            <option value="XLM">XLM-Stellar</option>
+            <option value="USDT">USDT-Tether</option>
+            <option value="USDC">USDC-USD Coin</option>
+            <option value="DOGE">DOGE-DogeCoin</option>
+            <option value="AVAX">AVAX-Avalanche</option>
+            <option value="UNI">UNI-Uniswap</option>
+            <option value="ATOM">ATOM-Cosmos</option>
+            <option value="ALGO">ALGO-Algorand</option>
+            <option value="XTZ">XTZ-Tezos</option>
+            <option value="FIL">FIL-FileCoin</option>
+            <option value="TRX">TRX-Tron</option>
+            <option value="THETA">THETA-Theta Network</option>
+            <option value="NEO">NEO-Neo</option>
+            <option value="EOS">EOS-EOS</option>
+            <option value="MATIC">MATIC-Polygon</option>
+            <option value="BSV">BSV-Bitcoin SV</option>
+            <option value="AAVE">AAVE-Aave</option>
+            <option value="XMR">XMR-Monero</option>
+            <option value="KSM">KSM-Kusama</option>
+            <option value="CRO">CRO-Crypto.com Coin</option>
+            <option value="DAI">DAI-Dai</option>
+            <option value="MKR">MKR-Maker</option>
+            <option value="BTG">BTG-Bitcoin Gold</option>
+            <option value="SUSHI">SUSHI-Sushiswap</option>
+            <option value="COMP">COMP-Compound</option>
+            <option value="DASH">DASH-Dash</option>
+            <option value="ZEC">ZEC-Zcash</option>
+            <option value="SNX">SNX-Synthetix</option>
+            <option value="DCR">DCR-Decred</option>
+            <option value="QTUM">QTUM-Qtum</option>
+            <option value="HNT">HNT-Helium</option>
+            <option value="EGLD">EGLD-Elrond</option>
+            <option value="HT">HT-Huobi Token</option>
+            <option value="CHZ">CHZ-Chiliz</option>
+            <option value="GRT">GRT-The Graph</option>
+            <option value="FTT">FTT-Ftx Token</option>
+            <option value="CRV">CRV-Curve DAO Token</option>
+            <option value="XEM">XEM-Xem</option>
+            <option value="CELO">CELO-Celo</option>
+            <option value="ONT">ONT-Ontology</option>
+            <option value="COMP">COMP-Compound</option>
+            <option value="VET">VET-VeChain</option>
+            <option value="MIOTA">MIOTA-Miota</option>
+              </datalist>
+            </div>
+          <div>
+            <button class="Swap_Button" onclick="swap()">
+            <span class="fas fa-exchange-alt"></span>
+            </button>
+          </div>
+          <div class="form__container">
+            <label for="to"><span class="form__labelText">To:</span>
+            </label>
+            <input list="to_currency" class="inputfield" name="to_currency" id="to">
+            <datalist id="to_currency">
+                <option value="AED">AED-Arab Emirates Dirham</option>
+                <option value="ARS">ARS-Argentine Peso</option>
+                <option value="AUD">AUD-Australian Dollar</option>
+                <option value="BGN">BGN-Bulgarian Lev</option>
+                <option value="BRL">BRL-Brazilian Real</option>
+                <option value="CAD">CAD-Canadian Dollar</option>
+                <option value="CHF">CHF-Swiss Franc</option>
+                <option value="CNY">CNY-Chinese Yuan Renminbi</option>
+                <option value="COP">COP-Colombian Peso</option>
+                <option value="CZK">CZK-Czech Koruna</option>
+                <option value="DKK">DKK-Danish Krone</option>
+                <option value="EUR">EUR-Euro</option>
+                <option value="GBP">GBP-Great British Pound</option>
+                <option value="INR">INR-Indian Rupee</option>
+                <option value="JPY">JPY-Japenese Yen</option>
+                <option value="KRW">KRW-Korean won</option>
+                <option value="KZT">KZT-Kazakhstani Tenge</option>
+                <option value="MXN">MXN-Mexican Peso</option>
+                <option value="MYR">MYR-Malaysian Ringgit</option>
+                <option value="NOK">NOK-Norwegian Krone</option>
+                <option value="NZD">NZD-New Zealand Dollar</option>
+                <option value="PHP">PHP-Phillippine Peso</option>
+                <option value="PKR">PKR-Pakistani rupee</option>
+                <option value="PLN">PLN-Polish Zloty</option>
+                <option value="RUB">RUB-Russian Ruble</option>
+                <option value="SAR">SAR-Saudi Riyal</option>
+                <option value="SEK">SEK-Swedish Krona</option>
+                <option value="SGD">SGD-Singapore Dollar</option>
+                <option value="THB">THB-Thai Baht</option>
+                <option value="USD">USD-United States Dollar</option>
+                <option value="VND">VND-Vietnamese Dong</option>
+            </datalist>
+          </div>
+            <center><button id="saveHistory" class="history_format"><i class="fa fa-history"></i></button>
+            <button id="openFavoriteForm" class="button" style="width: 150px; padding: 10px;">
+              <span class="transition"></span>
+              <span class="gradient"></span>
+              <span class="label">Save Currency</span></button>  
+            <button id="openHistoryForm" class="button" onclick="convert()">Convert<span class="button-border"></span></button>
+            <div id="historyFormPopup" class="hidden">
+              <h2><b><u>History Data</u></b></h2>
+              <p id="historyMessage"></p>
+              <ul id="historyList" style="color:white"></ul>
+              <button id="closeHistoryForm">Close</button>
+            </div>
+            <button id="saveFavorite" class="favorite_Button"><i class="material-icons">favorite</i></button>
+            <div id="favoriteFormPopup" class="hidden1">
+              <h2><b><u>Favorites</u></b></h2>
+              <p id="favoriteMessage"></p>
+              <ul id="favoritesList" style="color:white"></ul>
+              <button id="closeFavoriteForm">Close</button>
+            </div>
+            <div id="result1"></div>
+            <div id="result"></div>
+        </center>
+            </div>
+          </div>
+    </fieldset>
+    </div>   
+    <div class="container">
+        <center><p class="heading">Top News</p></center>
+        <ul class="news-list" id="newsList"></ul>
+    </div>
+  </div>
+  </main>
+</body>
+<script>
+    function showContent() {
+        const historicalDiv = document.querySelector(".historical");
+        historicalDiv.style.display = historicalDiv.style.display === "none" ? "block" : "none";
+        historyFormPopup.classList.add("hidden");
+        favoriteFormPopup.classList.add("hidden1");
+      }
+      
+    function ClearFields() {
+        document.getElementById("amount").value = "";
+        document.getElementById("from").value = "";
+        document.getElementById("to").value = "";
+      }
+    
+        function convert() {
+            var amount = document.getElementById("amount").value;
+            var from = document.getElementById("from").value;
+            var to = document.getElementById("to").value;
+        
+            fetch(`https://min-api.cryptocompare.com/data/price?fsym=${from}&tsyms=${to}&api_key=4dae1cb54d65bcf2c1cf6a4937bca72034b90f16b6a6be46537a8831e3fb605b`)
+                .then(response => response.json())
+                .then(data => {
+                    var rate = data[to];
+                    var result = amount * rate;
+                    document.getElementById("result").innerText = `${amount} ${from} = ${result} ${to}`;
+                    document.getElementById("result1").innerText = `Rate: 1 ${from} = ${rate} ${to}`;
+                })
+                .catch(err => console.log(err));
+        }
+        function swap() {
+          const temp= from.value;
+          from.value = to.value;
+          to.value = temp;
+        }
+    
+    const input_1 = document.getElementById("from");
+    const input_2 = document.getElementById("to");
+    const openHistoryFormButton = document.getElementById("openHistoryForm");
+    const historyFormPopup = document.getElementById("historyFormPopup");
+    const closeHistoryFormButton = document.getElementById("closeHistoryForm");
+    const historyList = document.getElementById("historyList");
+    const historyMessage = document.getElementById("historyMessage");
+    const saveHistory = document.getElementById("saveHistory");
+    
+    let inputHistory = JSON.parse(localStorage.getItem('InputHistory')) || [];
+    
+    openHistoryFormButton.addEventListener('click', () => {
+        const input1 = input_1.value;
+        const input2 = input_2.value;
+        inputHistory.push({ input1, input2 });
+        input1.value = '';
+        input2.value = '';
+    
+        // Limit history to the last 10 entries
+        inputHistory = inputHistory.slice(-10);
+    
+        // Save input history to local storage
+        localStorage.setItem('InputHistory', JSON.stringify(inputHistory));
+    
+        updateHistory();
+    });
+    
+    saveHistory.addEventListener('click', () => {
+        historyFormPopup.classList.toggle('hidden');
+      favoriteFormPopup.classList.add("hidden1");
+      historicalDiv.style.display = historicalDiv.style.display === "none" ? "block" : "none";
+      updateHistory();
+    });
+    
+    function updateHistory() {
+        historyList.innerHTML = '';
+        inputHistory.forEach((entry, index) => {
+            const li = document.createElement('li');
+            li.textContent = `Entry ${index+1}: From: ${entry.input1}, To: ${entry.input2}`;
+            historyList.appendChild(li);
+        });
+    }
+    
+    openHistoryFormButton.addEventListener("click", () => {
+     updateHistory();
+    });
+    
+    saveHistory.addEventListener("click", () => {
+      historyFormPopup.classList.remove("hidden");
+      favoriteFormPopup.classList.add("hidden1");
+      historicalDiv.style.display = historicalDiv.style.display === "none" ? "block" : "none";
+      updateHistory();
+    })
+    
+    closeHistoryFormButton.addEventListener("click", () => {
+      historyFormPopup.classList.add("hidden");
+      historyMessage.textContent = ""; // Clear message on closing
+    });
+    openHistoryFormButton.addEventListener("click", updateHistory);
+    
+    window.addEventListener('load', () => {
+        inputHistory = JSON.parse(localStorage.getItem('InputHistory')) || [];
+        updateHistory();
+    });
+    
+    const fvr_1 = document.getElementById("from");
+    const fvr_2 = document.getElementById("to");
+    const openFavoriteFormButton = document.getElementById("openFavoriteForm");
+    const favoriteFormPopup = document.getElementById("favoriteFormPopup");
+    const closeFavoriteFormButton = document.getElementById("closeFavoriteForm");
+    const favoritesList = document.getElementById("favoritesList");
+    const favoriteMessage = document.getElementById("favoriteMessage");
+    const saveFavorite = document.getElementById("saveFavorite");
+    
+    let inputFavorite = JSON.parse(localStorage.getItem('InputFavorite')) || [];
+    
+    openFavoriteFormButton.addEventListener('click', () => {
+        const fvr1 = fvr_1.value;
+        const fvr2 = fvr_2.value;
+        inputFavorite.push({ fvr1, fvr2 });
+        fvr1.value = '';
+        fvr2.value = '';
+    
+        // Limit history to the last 10 entries
+        inputFavorite = inputFavorite.slice(-5);
+    
+        // Save input history to local storage
+        localStorage.setItem('InputFavorite', JSON.stringify(inputFavorite));
+    
+        updateFavorite();
+    });
+    
+    function useFavorite(entry) {
+        document.getElementById("from").value = entry.fvr1;
+        document.getElementById("to").value = entry.fvr2;
+    }
+    
+    saveFavorite.addEventListener('click', () => {
+        favoriteFormPopup.classList.toggle('hidden1');
+      historyFormPopup.classList.add("hidden");
+      updateFavorite();
+    });
+    
+    function updateFavorite() {
+        favoritesList.innerHTML = '';
+        inputFavorite.forEach((entry, index) => {
+            const li = document.createElement('li');
+            //li.textContent = Entry ${index+1}: From: ${entry.fvr1}, To: ${entry.fvr2};
+        li.textContent = `From: ${entry.fvr1}, To: ${entry.fvr2}`;
+            li.addEventListener("click", () => useFavorite(entry));
+            favoritesList.appendChild(li);
+        });
+    }
+    
+    openFavoriteFormButton.addEventListener("click", () => {
+     updateFavorite();
+    });
+    
+    saveFavorite.addEventListener("click", () => {
+      favoriteFormPopup.classList.remove("hidden1");
+      historyFormPopup.classList.add("hidden");
+      updateFavorite();
+    })
+    
+    closeFavoriteFormButton.addEventListener("click", () => {
+      favoriteFormPopup.classList.add("hidden1");
+      favoriteMessage.textContent = ""; // Clear message on closing
+    });
+    openFavoriteFormButton.addEventListener("click", updateFavorite);
+    
+    window.addEventListener('load', () => {
+        inputFavorite = JSON.parse(localStorage.getItem('InputFavorite')) || [];
+        updateFavorite();
+    });
+    
+    const newsList = document.getElementById('newsList');
+
+    document.addEventListener('DOMContentLoaded', retrieve);
+
+    function retrieve() {
+        let url = `https://min-api.cryptocompare.com/data/v2/news/?categories=BTC,ETH,DOGE?limit=10?lang=EN&api_key=03db3d3be809317ed06837fdaaddd5b9edda5fabe88d373d49071866402da496`;
+
+        fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            newsList.innerHTML = ''; // Clear previous headlines
+            data.Data.forEach(Data => {
+                let listItem = document.createElement('li');
+                listItem.classList.add('news-item');
+
+                let img= document.createElement('img');
+                img.setAttribute('src', Data.imageurl);
+                img.setAttribute('alt', Data.title);
+
+                let a = document.createElement('a');
+                a.setAttribute('href', Data.url);
+                a.setAttribute('target', '_blank');
+                a.textContent = Data.title;
+
+                listItem.appendChild(img);
+                listItem.appendChild(a);
+                newsList.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error('Error fetching news:', error));
+    }
+</script>
+</html>
